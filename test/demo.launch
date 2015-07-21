@@ -1,0 +1,22 @@
+<launch>    
+    <node name="static_tf0" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 /map /base_link 0" />
+    <node name="tester" pkg="costmap_2d" type="costmap_2d_node" output="screen">
+        <rosparam>
+            costmap:
+                plugins:
+                    - {name: path_layer, type: 'path_costmap_layer::PathLayer'}        
+                path_layer:
+                    path_topics: 
+                        - /p1_001/path
+                        - /p1_002/path
+                origin_x: -5.0
+                origin_y: -5.0
+                publish_frequency: 2.0
+                width: 10
+                height: 10
+                resolution: 0.1
+                track_unknown_space: true
+        </rosparam>
+    </node>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find path_costmap_layer)/test/demo.rviz" />
+</launch>
