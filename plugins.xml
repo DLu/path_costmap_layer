@@ -1,4 +1,4 @@
-<library path="INSERT_NAME_OF_LIBRARY">
+<library path="libpath_costmap_layer">
   <class type="path_costmap_layer::PathLayer" base_class_type="costmap_2d::Layer">
     <description></description>
   </class>

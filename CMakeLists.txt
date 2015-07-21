@@ -16,6 +16,8 @@ CATKIN_DEPENDS costmap_2d dynamic_reconfigure pluginlib
 )
 
 include_directories(
+  include
   ${catkin_INCLUDE_DIRS}
 )
 
+add_library(path_costmap_layer src/path_costmap_layer.cpp)
