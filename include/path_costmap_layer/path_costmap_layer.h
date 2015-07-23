@@ -43,7 +43,9 @@ public:
 
 private:
   std::vector< ros::Subscriber > subscribers_;
-
+  
+  unsigned char cost_;
+  void drawWideLine(int x0, int y0, int x1, int y1, float wd);
   void reconfigureCB(costmap_2d::GenericPluginConfig &config, uint32_t level);
   dynamic_reconfigure::Server<costmap_2d::GenericPluginConfig> *dsrv_;
 };
