@@ -30,6 +30,7 @@ while not rospy.is_shutdown():
     path.poses.append( get_pose(1,4) )
     path.poses.append( get_pose(0,4) )
     path.poses.append( get_pose(-1,4) )
+    path.poses.append( get_pose(-3,0) )
     
     pubs[ TOPICS[c] ].publish( path )
     
