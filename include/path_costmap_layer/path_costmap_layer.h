@@ -46,6 +46,7 @@ private:
   std::vector< ros::Subscriber > subscribers_;
   Inflater inflater;
   unsigned char cost_;
+  double radius_;
   void reconfigureCB(costmap_2d::GenericPluginConfig &config, uint32_t level);
   dynamic_reconfigure::Server<costmap_2d::GenericPluginConfig> *dsrv_;
 };

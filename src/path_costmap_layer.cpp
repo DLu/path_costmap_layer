@@ -31,6 +31,8 @@ void PathLayer::onInitialize()
   nh.param("path_cost", i_cost, 100);
   cost_ = i_cost;
   
+  nh.param("radius", radius_, 0.5);
+  
   std::vector<std::string> topic_list;
   nh.getParam("path_topics", topic_list);
   for(unsigned i=0; i < topic_list.size(); i++) {
@@ -60,9 +62,6 @@ void PathLayer::reconfigureCB(costmap_2d::GenericPluginConfig &config, uint32_t 
 
 void PathLayer::incomingPath(const nav_msgs::PathConstPtr& path, int id)
 {
-    double width = 9.0;
-    double realWidth = width * resolution_;
-    
     std::vector<int> pixels;
 
     for(int i=0;i<path->poses.size(); i++){
@@ -74,11 +73,11 @@ void PathLayer::incomingPath(const nav_msgs::PathConstPtr& path, int id)
         if(!worldToMap(x, y, mx, my)){
             continue;
         }
-        addExtraBounds(x-realWidth,y-realWidth,x+realWidth,y+realWidth);
+        addExtraBounds(x-radius_,y-radius_,x+radius_,y+radius_);
         pixels.push_back( getIndex(mx, my) );
     }
 
-    inflater.inflate(this, pixels, realWidth);
+    inflater.inflate(this, pixels, radius_);
 }
 
 
