@@ -1,16 +1,22 @@
 <launch>    
     <arg name="gui" default="true" />
-    <node name="static_tf0" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 /map /base_link 0" />
+    <arg name="paths" default="true" />
+    <node name="static_tf0" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 /map /p1/base_link 0" />
+    <node name="static_tf1" pkg="tf" type="static_transform_publisher" args="1 0 0 0 0 0 /map /p2/base_link 0" />
+    
     <node name="map_server" pkg="map_server" type="map_server" args="$(find path_costmap_layer)/test/map.yaml" />
+    
     <node name="p1" pkg="navfn" type="navfn_node" output="screen">
         <rosparam  command="load" file="$(find path_costmap_layer)/test/costmap.yaml" ns="costmap" />
-        <rosparam ns="costmap/path_layer/path_topics">
+        <param name="costmap/robot_base_frame" value="/p1/base_link"/>
+        <rosparam ns="costmap/path_layer/path_topics" if="$(arg paths)">
             - /p2/navfn_planner/plan
         </rosparam>
     </node>
     <node name="p2" pkg="navfn" type="navfn_node" output="screen">
         <rosparam  command="load" file="$(find path_costmap_layer)/test/costmap.yaml" ns="costmap" />
-        <rosparam ns="costmap/path_layer/path_topics">
+        <param name="costmap/robot_base_frame" value="/p2/base_link"/>
+        <rosparam ns="costmap/path_layer/path_topics" if="$(arg paths)">
             - /p1/navfn_planner/plan
         </rosparam>
     </node>
