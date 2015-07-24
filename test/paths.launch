@@ -1,0 +1,18 @@
+<launch>    
+    <arg name="gui" default="true" />
+    <node name="static_tf0" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 /map /base_link 0" />
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find path_costmap_layer)/test/map.yaml" />
+    <node name="p1" pkg="navfn" type="navfn_node" output="screen">
+        <rosparam  command="load" file="$(find path_costmap_layer)/test/costmap.yaml" ns="costmap" />
+        <rosparam ns="costmap/path_layer/path_topics">
+            - /p2/navfn_planner/plan
+        </rosparam>
+    </node>
+    <node name="p2" pkg="navfn" type="navfn_node" output="screen">
+        <rosparam  command="load" file="$(find path_costmap_layer)/test/costmap.yaml" ns="costmap" />
+        <rosparam ns="costmap/path_layer/path_topics">
+            - /p1/navfn_planner/plan
+        </rosparam>
+    </node>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find path_costmap_layer)/test/path.rviz" if="$(arg gui)"/>
+</launch>

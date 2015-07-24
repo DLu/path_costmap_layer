@@ -1,0 +1,5 @@
+plugins:
+    - {name: static_layer, type: 'costmap_2d::StaticLayer'}
+    - {name: path_layer, type: 'path_costmap_layer::PathLayer'}        
+publish_frequency: 2.0
+track_unknown_space: true
