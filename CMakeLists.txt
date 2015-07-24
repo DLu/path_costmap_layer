@@ -20,4 +20,4 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_library(path_costmap_layer src/path_costmap_layer.cpp)
+add_library(path_costmap_layer src/path_costmap_layer.cpp src/inflater.cpp)

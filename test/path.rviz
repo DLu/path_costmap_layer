@@ -76,13 +76,21 @@ Visualization Manager:
         Z: 0
       Topic: /p2/navfn_planner/plan
       Value: true
-    - Alpha: 0.7
+    - Alpha: 0.5
       Class: rviz/Map
       Color Scheme: map
       Draw Behind: false
       Enabled: true
       Name: Map
       Topic: /p1/costmap/costmap
+      Value: true
+    - Alpha: 0.5
+      Class: rviz/Map
+      Color Scheme: map
+      Draw Behind: false
+      Enabled: true
+      Name: Map
+      Topic: /p2/costmap/costmap
       Value: true
   Enabled: true
   Global Options:
@@ -107,7 +115,7 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: -2.30037e-07
+      Angle: -0.0200002
       Class: rviz/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
@@ -138,5 +146,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1200
-  X: 39
+  X: 25
   Y: 406

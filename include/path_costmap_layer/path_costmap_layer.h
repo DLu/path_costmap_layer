@@ -6,6 +6,7 @@
 #include <costmap_2d/GenericPluginConfig.h>
 #include <dynamic_reconfigure/server.h>
 #include <nav_msgs/Path.h>
+#include <path_costmap_layer/inflater.h>
 
 namespace path_costmap_layer
 {
@@ -43,9 +44,8 @@ public:
 
 private:
   std::vector< ros::Subscriber > subscribers_;
-  
+  Inflater inflater;
   unsigned char cost_;
-  void drawWideLine(int x0, int y0, int x1, int y1, float wd);
   void reconfigureCB(costmap_2d::GenericPluginConfig &config, uint32_t level);
   dynamic_reconfigure::Server<costmap_2d::GenericPluginConfig> *dsrv_;
 };
