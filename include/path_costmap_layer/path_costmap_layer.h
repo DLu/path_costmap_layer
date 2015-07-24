@@ -44,9 +44,17 @@ public:
 
 private:
   std::vector< ros::Subscriber > subscribers_;
+  std::vector< nav_msgs::Path > paths_;
   Inflater inflater;
   unsigned char cost_;
   double radius_;
+  
+  bool needsUpdate;
+  double old_x0_, old_y0_, old_x1_, old_y1_;
+  double min_x_, min_y_, max_x_, max_y_;
+  
+  void drawAllPaths();
+  
   void reconfigureCB(costmap_2d::GenericPluginConfig &config, uint32_t level);
   dynamic_reconfigure::Server<costmap_2d::GenericPluginConfig> *dsrv_;
 };
